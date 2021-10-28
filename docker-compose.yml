@@ -9,6 +9,17 @@ services:
     build:
       context: .
       dockerfile: src/Services/BookManager/BookManager.API/Dockerfile
+  
+  basketmanagerdb:
+    image: redis
+
+  basketmanager.api:
+    image: ${DOCKER_REGISTRY-}basketmanagerapi
+    build:
+      context: .
+      dockerfile: src/Services/BasketManager/BasketManager.API/Dockerfile
+    
 
 volumes:
   mongo_data:
+  redis_data:

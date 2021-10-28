@@ -16,3 +16,18 @@ services:
       - bookmanagerdb
     ports:
       - "8091:80"
+
+  basketmanagerdb:
+    container_name: basketmanagerredis
+    restart: always
+    ports:
+        - "6380:6379"
+    volumes:
+        - redis_data:/data/redis
+
+  basketmanager.api:
+    container_name: basketmanager.api
+    depends_on:
+      - basketmanagerdb
+    ports:
+      - "8092:80"
