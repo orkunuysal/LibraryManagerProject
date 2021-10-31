@@ -18,8 +18,17 @@ services:
     build:
       context: .
       dockerfile: src/Services/BasketManager/BasketManager.API/Dockerfile
-    
+ 
+  reservationdb:
+    image: postgres
+  
+  reservationmanager.api:
+    image: ${DOCKER_REGISTRY-}reservationmanagerapi
+    build:
+      context: .
+      dockerfile: src/Services/ReservationManager/Dockerfile
 
 volumes:
   mongo_data:
   redis_data:
+  postgres_data:
