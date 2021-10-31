@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Reservation.API\**" />
+    <Compile Remove="Reservation.Domain\**" />
+    <Compile Remove="Reservation.Infastructure\**" />
+    <Content Remove="Reservation.API\**" />
+    <Content Remove="Reservation.Domain\**" />
+    <Content Remove="Reservation.Infastructure\**" />
+    <EmbeddedResource Remove="Reservation.API\**" />
+    <EmbeddedResource Remove="Reservation.Domain\**" />
+    <EmbeddedResource Remove="Reservation.Infastructure\**" />
+    <None Remove="Reservation.API\**" />
+    <None Remove="Reservation.Domain\**" />
+    <None Remove="Reservation.Infastructure\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReservationManager.Application\ReservationManager.Application.csproj" />
+    <ProjectReference Include="..\ReservationManager.Infrastructure\ReservationManager.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
