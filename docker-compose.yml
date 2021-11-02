@@ -1,8 +1,17 @@
 version: '3.1'
 
 services:
+  rabbitmq:
+    image: rabbitmq:3.9.8-management-alpine
+
   bookmanagerdb:
     image: mongo
+
+  reservationdb:
+    image: postgres
+  
+  basketmanagerdb:
+    image: redis
 
   bookmanager.api:
     image: ${DOCKER_REGISTRY-}bookmanagerapi
@@ -10,23 +19,19 @@ services:
       context: .
       dockerfile: src/Services/BookManager/BookManager.API/Dockerfile
   
-  basketmanagerdb:
-    image: redis
-
   basketmanager.api:
     image: ${DOCKER_REGISTRY-}basketmanagerapi
     build:
       context: .
       dockerfile: src/Services/BasketManager/BasketManager.API/Dockerfile
  
-  reservationdb:
-    image: postgres
-  
   reservationmanager.api:
     image: ${DOCKER_REGISTRY-}reservationmanagerapi
     build:
       context: .
       dockerfile: src/Services/ReservationManager/Dockerfile
+
+
 
 volumes:
   mongo_data:

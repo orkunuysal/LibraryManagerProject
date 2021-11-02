@@ -1,14 +1,11 @@
 using BasketManager.API.Service;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BasketManager.API
 {
@@ -26,11 +23,19 @@ namespace BasketManager.API
         {
             services.AddHealthChecks();
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
             services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = Configuration.GetConnectionString("Redis");
             }
             );
+            // MassTransit-RabbitMQ Configuration
+            services.AddMassTransit(config => {
+                config.UsingRabbitMq((ctx, cfg) => {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                });
+            });
+
             services.AddScoped<IBasketService, BasketService>();
             services.AddSwaggerGen(c =>
             {
