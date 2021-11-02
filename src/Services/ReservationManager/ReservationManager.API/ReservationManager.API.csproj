@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="MassTransit" Version="7.2.3" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.3" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -31,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Messengers\EventBus\EventBus.csproj" />
     <ProjectReference Include="..\ReservationManager.Application\ReservationManager.Application.csproj" />
     <ProjectReference Include="..\ReservationManager.Infrastructure\ReservationManager.Infrastructure.csproj" />
   </ItemGroup>

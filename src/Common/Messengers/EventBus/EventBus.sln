@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus", "EventBus.csproj", "{5E61A741-80E4-4151-AB1D-88B84D55E87B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E61A741-80E4-4151-AB1D-88B84D55E87B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E61A741-80E4-4151-AB1D-88B84D55E87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E61A741-80E4-4151-AB1D-88B84D55E87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E61A741-80E4-4151-AB1D-88B84D55E87B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B9B5EEB-EFDB-463C-A2C7-F222A4C26954}
+	EndGlobalSection
+EndGlobal

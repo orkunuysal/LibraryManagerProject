@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketManager.API", "BasketManager.API.csproj", "{FA17093B-754A-4725-9A3D-CCD00989D5F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketManager.API", "BasketManager.API.csproj", "{FA17093B-754A-4725-9A3D-CCD00989D5F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "..\..\..\Common\Messengers\EventBus\EventBus.csproj", "{B3738040-6651-409B-AD7A-2B7213E475AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FA17093B-754A-4725-9A3D-CCD00989D5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA17093B-754A-4725-9A3D-CCD00989D5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA17093B-754A-4725-9A3D-CCD00989D5F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3738040-6651-409B-AD7A-2B7213E475AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3738040-6651-409B-AD7A-2B7213E475AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3738040-6651-409B-AD7A-2B7213E475AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3738040-6651-409B-AD7A-2B7213E475AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
