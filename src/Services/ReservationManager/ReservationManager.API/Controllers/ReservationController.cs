@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ReservationManager.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ReservationController : ControllerBase
     {
