@@ -7,8 +7,7 @@ namespace BasketManager.API.Entities
 {
     public class BasketItem
     {
-        public int ItemId { get; set; }
-        public int ReserveDays { get; set; }
+        public string ItemId { get; set; }
         public string violationFee { get; set; }
 
     }

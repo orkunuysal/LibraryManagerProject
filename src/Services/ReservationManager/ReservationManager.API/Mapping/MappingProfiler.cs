@@ -13,7 +13,8 @@ namespace ReservationManager.API.Mapping
         public MappingProfiler()
         {
             CreateMap<ExecuteReservationCommand, ReservationExecutedEvent>().ReverseMap()
-                .ForMember(dest => dest.ReservedBooks, opt => opt.MapFrom(src => src.Items.Select(it => it.ItemId)));
+                .ForMember(dest => dest.ReservedBooks, opt => opt.MapFrom(src => src.Items.Select(it => it.ItemId)))
+                .ForMember(dest => dest.ReservationEndDate, opt => opt.MapFrom(src => DateTime.Now.AddDays(src.ReserveDays)));
         }
     }
 }
