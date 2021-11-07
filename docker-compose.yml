@@ -30,7 +30,11 @@ services:
     build:
       context: .
       dockerfile: src/Services/ReservationManager/Dockerfile
-
+  libraryapigateway:
+    image: ${DOCKER_REGISTRY-}libraryapigateway
+    build:
+      context: .
+      dockerfile: src/ApiGateway/Dockerfile
 
 
 volumes:
