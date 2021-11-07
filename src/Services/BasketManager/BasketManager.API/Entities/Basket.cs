@@ -18,6 +18,7 @@ namespace BasketManager.API.Entities
         }
 
         public String UserId { get; set; }
+        public int ReserveDays { get; set; }
         public List<BasketItem> Items { get; set; }
     }
 }

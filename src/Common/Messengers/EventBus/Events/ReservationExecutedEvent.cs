@@ -9,13 +9,13 @@ namespace EventBus.Events
     public class ReservationExecutedEvent : IntegrationBaseEvent
     {
         public String UserId { get; set; }
+        public int ReserveDays { get; set; }
         public List<ReservedBooks> Items { get; set; }
 
     }
     public class ReservedBooks
     {
-        public int ItemId { get; set; }
-        public int ReserveDays { get; set; }
+        public string ItemId { get; set; }
         public string violationFee { get; set; }
 
     }
