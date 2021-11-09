@@ -1,6 +1,7 @@
 ﻿using BookManager.API.Entities;
 using BookManager.API.Service;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -13,9 +14,11 @@ namespace BookManagementAPI.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IBooksService _booksService;
-        public BooksController(IBooksService booksService)
+        private readonly ILogger _logger;
+        public BooksController(IBooksService booksService, ILogger logger)
         {
             _booksService = booksService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -23,6 +26,7 @@ namespace BookManagementAPI.Controllers
         {
 
             var books = await _booksService.GetBooks();
+            _logger.Information("Books returned");
             return Ok(books);
         }
 
@@ -70,6 +74,7 @@ namespace BookManagementAPI.Controllers
         public async Task<ActionResult<bool>> AddBook(Book book)
         {
             await _booksService.CreateBook(book);
+            _logger.Information($"Book named: {book.Name} added to inventory");
             return Ok();
         }
 
@@ -79,6 +84,7 @@ namespace BookManagementAPI.Controllers
         public async Task<ActionResult<bool>> UpdateBook(Book book)
         {
             await _booksService.UpdateBook(book);
+            _logger.Information($"Book named: {book.Name} updated");
             return Ok();
         }
 
@@ -86,6 +92,7 @@ namespace BookManagementAPI.Controllers
         public async Task<ActionResult<bool>> DeleteBook(String id)
         {
             await _booksService.DeleteBook(id);
+            _logger.Information($"Book with id : {id} deleted");
             return Ok();
         }
     }

@@ -5,6 +5,7 @@ using ReservationManager.Application.Commands.CancelReservation;
 using ReservationManager.Application.Commands.ExecuteReservation;
 using ReservationManager.Application.Queries;
 using ReservationManager.Application.Queries.GetReservations;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,11 @@ namespace ReservationManager.API.Controllers
     public class ReservationController : ControllerBase
     {
         private readonly IMediator _mediator;
-
-        public ReservationController(IMediator mediator)
+        private readonly ILogger _logger;
+        public ReservationController(IMediator mediator, ILogger logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [Route("[action]/{userId}", Name = "GetReservationsByUserId")]
@@ -47,6 +49,7 @@ namespace ReservationManager.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<int>> ExecuteReservation([FromBody] ExecuteReservationCommand command)
         {
+            _logger.Information("Reservation Execute command received");
             var result = await _mediator.Send(command);
             return Ok(result);
         }
