@@ -9,6 +9,8 @@ services:
         - "27018:27017"
     volumes:
         - mongo_data:/data/db
+    networks:
+      - librarynetwork
 
   bookmanager.api:
     container_name: bookmanager.api
@@ -16,6 +18,9 @@ services:
       - bookmanagerdb
     ports:
       - "8091:80"
+    networks:
+      - librarynetwork
+      - elastic
 
   basketmanagerdb:
     container_name: basketmanagerredis
@@ -24,6 +29,8 @@ services:
         - "6380:6379"
     volumes:
         - redis_data:/data/redis
+    networks:
+      - librarynetwork
 
   basketmanager.api:
     container_name: basketmanager.api
@@ -31,7 +38,9 @@ services:
       - basketmanagerdb
     ports:
       - "8092:80"
-
+    networks:
+      - librarynetwork
+      - elastic
   
   reservationdb:
     container_name: reservationpostgres
@@ -46,6 +55,8 @@ services:
     volumes:
        - "postgres_data:/data/postgres"
        - .:/docker-entrypoint-initdb.d
+    networks:
+      - librarynetwork
 
   reservationmanager.api:
     container_name: reservationmanager.api
@@ -53,6 +64,9 @@ services:
       - reservationdb
     ports:
       - "8093:80"
+    networks:
+      - librarynetwork
+      - elastic
   
   rabbitmq:
     container_name: rabbitmq
@@ -60,8 +74,44 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - librarynetwork
 
   libraryapigateway:
     container_name: libraryapigateway
     ports:
       - "8090:80"
+    networks:
+      - librarynetwork
+      - elastic
+
+  elasticsearch:
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+    volumes:
+      - elastic_data:/usr/share/elasticsearch/data
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - elastic
+
+  kibana:
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_URL = http://elasticsearch:9200
+      - ELASTICSEARCH_HOSTS = http://elasticsearch:9200
+    networks:
+      - elastic
+    

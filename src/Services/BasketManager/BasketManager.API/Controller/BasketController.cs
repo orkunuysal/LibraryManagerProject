@@ -10,6 +10,7 @@ using EventBus.Events;
 using MassTransit;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace BasketManager.API.Controller
 {
@@ -20,12 +21,14 @@ namespace BasketManager.API.Controller
         private readonly IBasketService _basketService;
         private readonly IMapper _mapper;
         private readonly IPublishEndpoint _publishEndpoint;
+        private readonly ILogger _logger;
 
-        public BasketController(IBasketService basketService, IMapper mapper, IPublishEndpoint publishEndpoint)
+        public BasketController(IBasketService basketService, IMapper mapper, IPublishEndpoint publishEndpoint, ILogger logger)
         {
             _basketService = basketService;
             _mapper = mapper;
             _publishEndpoint = publishEndpoint;
+            _logger = logger;
         }
 
         [Route("[action]/{userId}", Name = "GetBasket")]
@@ -46,12 +49,15 @@ namespace BasketManager.API.Controller
         {
             var result = await _basketService.AddToBasket(basket);
 
+            _logger.Information("items added to Basket for user: " + basket.UserId);
+
             return Ok(result);
         }
         [HttpDelete("[action]/{userId}", Name = "EmptyBasket")]
         public async Task<IActionResult> EmptyBasket(string userId)
         {
             await _basketService.EmptyBasket(userId);
+            _logger.Information("Items removed for user: " + userId);
             return Ok();
         }
         [Route("[action]", Name = "BasketCheckout")]
@@ -69,9 +75,11 @@ namespace BasketManager.API.Controller
             var eventMessage = _mapper.Map<ReservationExecutedEvent>(basket);
             eventMessage.UserId = basket.UserId;
 
+            
             await _publishEndpoint.Publish<ReservationExecutedEvent>(eventMessage);
-
+            _logger.Information("Basket items checked out for user: " + basket.UserId);
             await _basketService.EmptyBasket(basket.UserId);
+            _logger.Information("Items removed for user: " + basket.UserId);
 
             return Accepted(result);
         }
