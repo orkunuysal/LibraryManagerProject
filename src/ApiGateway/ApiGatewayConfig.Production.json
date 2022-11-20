@@ -1,6 +1,5 @@
 {
   "Routes": [
-    //BookManager
     {
       "DownstreamPathTemplate": "/api/v1/Books",
       "DownstreamScheme": "http",

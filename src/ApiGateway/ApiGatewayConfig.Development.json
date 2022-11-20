@@ -1,6 +1,5 @@
 {
   "Routes": [
-    //BookManager
     {
       "DownstreamPathTemplate": "/api/v1/Books",
       "DownstreamScheme": "http",
@@ -101,9 +100,8 @@
       "UpstreamHttpMethod": [ "DELETE" ],
       "SwaggerKey": "Books"
     },
+    
 
-
-    //BasketManager
     {
       "DownstreamPathTemplate": "/api/v1/Basket/GetBasket/{userId}",
       "DownstreamScheme": "http",
@@ -160,7 +158,8 @@
       "SwaggerKey": "Basket"
     },
 
-    //ReservationManager
+  
+    
     {
       "DownstreamPathTemplate": "/api/v1/Reservation/GetReservationsByUserId/{userId}",
       "DownstreamScheme": "http",
