@@ -101,8 +101,6 @@
       "SwaggerKey": "Books"
     },
 
-
-    //BasketManager
     {
       "DownstreamPathTemplate": "/api/v1/Basket/GetBasket/{userId}",
       "DownstreamScheme": "http",
@@ -158,8 +156,8 @@
       "UpstreamHttpMethod": [ "POST" ],
       "SwaggerKey": "Basket"
     },
-
-    //ReservationManager
+    
+    
     {
       "DownstreamPathTemplate": "/api/v1/Reservation/GetReservationsByUserId/{userId}",
       "DownstreamScheme": "http",
